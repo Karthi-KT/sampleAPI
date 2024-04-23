@@ -1,6 +1,7 @@
 // import React from "react";
 import PropTypes from "prop-types";
 import Modal from "react-modal";
+import "../style.css";
 
 Modal.setAppElement("#root");
 
@@ -18,11 +19,16 @@ const Modals = ({ isOpen, country, onRequestClose }) => {
     <Modal isOpen={isOpen} onRequestClose={onRequestClose} style={styles}>
       {country && (
         <>
-          <h3>{country.name}</h3>
+          <h3>{country.name.common}</h3>
+          <div>
+            <strong>Capital: </strong>
+            {country.capital[0]}
+          </div>
           <div>
             <strong>Population: </strong>
             {country.population}
           </div>
+          <button className="closeBtn" onClick={onRequestClose}>OK</button>
         </>
       )}
     </Modal>

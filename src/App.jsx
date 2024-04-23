@@ -1,12 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./style.css";
+import Modal from "react-modal";
 import Modals from "./Components/Modals";
+
+Modal.setAppElement("#root");
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [displayDetails, setDisplayDetails] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -23,13 +27,16 @@ function App() {
         console.log("Error Occurred:", error);
       });
   }, []);
+
   const openModal = (country) => {
     setDisplayDetails(country);
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
+
   return (
     <>
       <div className="container">
@@ -50,7 +57,7 @@ function App() {
         isOpen={modalOpen}
         country={displayDetails}
         onRequestClose={closeModal}
-      ></Modals>
+      />
     </>
   );
 }

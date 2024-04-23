@@ -24,3 +24,18 @@
         font-size: 1.25em;
     }
 }
+
+.closeBtn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.closeBtn:hover {
+    background-color: #0056b3;
+}
