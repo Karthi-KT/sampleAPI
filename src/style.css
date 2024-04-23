@@ -1,0 +1,26 @@
+.container {
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listView {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+
+    img {
+        height: 60%;
+        width: 60%;
+        cursor: pointer;
+    }
+
+    .countryName {
+        width: 100%;
+        color: white;
+        background-color: rgb(28, 4, 4);
+        text-align: center;
+        font-size: 1.25em;
+    }
+}
