@@ -33,7 +33,7 @@ function App() {
   const getWeather = async (countryName) => {
     try {
       const response = await axios.get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${countryName}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${countryName}&appid=${apiKey}`
       );
       setWeather(response.data);
       console.log(response);
