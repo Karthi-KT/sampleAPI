@@ -5,14 +5,19 @@ import "../style.css";
 
 Modal.setAppElement("#root");
 
-const Modals = ({ isOpen, country, onRequestClose }) => {
+const Modals = ({ isOpen, country, weather, onRequestClose }) => {
   const styles = {
     content: {
+      height: "45%",
+      width: "30%",
       top: "50%",
       left: "50%",
       right: "auto",
       bottom: "auto",
       transform: "translate(-50%,-50%)",
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
     },
   };
   return (
@@ -28,7 +33,18 @@ const Modals = ({ isOpen, country, onRequestClose }) => {
             <strong>Population: </strong>
             {country.population}
           </div>
-          <button className="closeBtn" onClick={onRequestClose}>OK</button>
+          {weather && (
+            <div>
+              <h3>Weather Details</h3>
+              <p>Temperature: {Math.round(weather.main.temp - 273.15)}°C</p>
+              <p>Humidity: {weather.main.humidity}%</p>
+              <p>Description: {weather.weather[0].description}</p>
+              <p>Wind Speed: {weather.wind.speed} m/s</p>
+            </div>
+          )}
+          <button className="closeBtn" onClick={onRequestClose}>
+            OK
+          </button>
         </>
       )}
     </Modal>
@@ -37,6 +53,7 @@ const Modals = ({ isOpen, country, onRequestClose }) => {
 Modals.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   country: PropTypes.object,
+  weather: PropTypes.object,
   onRequestClose: PropTypes.func.isRequired,
 };
 

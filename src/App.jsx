@@ -10,6 +10,8 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [displayDetails, setDisplayDetails] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [weather, setWeather] = useState(null);
+  const apiKey = "a5fc2659337372e1a849ebb4e0874738";
 
   useEffect(() => {
     axios
@@ -28,8 +30,21 @@ function App() {
       });
   }, []);
 
+  const getWeather = async (countryName) => {
+    try {
+      const response = await axios.get(
+        `http://api.openweathermap.org/data/2.5/weather?q=${countryName}&appid=${apiKey}`
+      );
+      setWeather(response.data);
+      console.log(response)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   const openModal = (country) => {
     setDisplayDetails(country);
+    getWeather(country.name.common);
     setModalOpen(true);
   };
 
@@ -56,6 +71,7 @@ function App() {
       <Modals
         isOpen={modalOpen}
         country={displayDetails}
+        weather={weather}
         onRequestClose={closeModal}
       />
     </>
