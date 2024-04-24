@@ -36,7 +36,7 @@ function App() {
         `http://api.openweathermap.org/data/2.5/weather?q=${countryName}&appid=${apiKey}`
       );
       setWeather(response.data);
-      console.log(response)
+      console.log(response);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -54,6 +54,7 @@ function App() {
 
   return (
     <>
+      <div className="title">Weather details of the countries</div>
       <div className="container">
         {countries.map((country, index) => (
           <div
