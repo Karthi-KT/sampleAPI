@@ -6,6 +6,10 @@
     color: white;
 }
 
+.filter {
+    width: 100%;
+}
+
 .container {
     width: 100%;
     background-color: aqua;
@@ -17,23 +21,25 @@
 }
 
 .listView {
+    width: 25%;
+    /* Display 4 listView items per row by default */
     display: flex;
     flex-direction: column;
     align-items: center;
+}
 
-    img {
-        height: 100%;
-        width: 100%;
-        cursor: pointer;
-    }
+.listView img {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
 
-    .countryName {
-        width: 100%;
-        color: white;
-        background-color: rgb(28, 4, 4);
-        text-align: center;
-        font-size: 1.25em;
-    }
+.listView .countryName {
+    width: 100%;
+    color: white;
+    background-color: rgb(28, 4, 4);
+    text-align: center;
+    font-size: 1.25em;
 }
 
 .closeBtn {
@@ -49,4 +55,20 @@
 
 .closeBtn:hover {
     background-color: #0056b3;
+}
+
+/* Media query for tablet */
+@media screen and (max-width: 1024px) {
+    .listView {
+        width: 33.33%;
+        /* Display 3 listView items per row */
+    }
+}
+
+/* Media query for mobile */
+@media screen and (max-width: 600px) {
+    .listView {
+        width: 50%;
+        /* Display 2 listView items per row */
+    }
 }
