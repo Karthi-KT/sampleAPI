@@ -11,7 +11,7 @@ function App() {
   const [displayDetails, setDisplayDetails] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [weather, setWeather] = useState(null);
-  const [region, setRegion] = useState("");
+  const [filterText, setFilterText] = useState("");
   const apiKey = "a5fc2659337372e1a849ebb4e0874738";
 
   useEffect(() => {
@@ -52,34 +52,37 @@ function App() {
   const closeModal = () => {
     setModalOpen(false);
   };
+
   const handleFilter = (e) => {
-    setRegion(e.target.value);
+    setFilterText(e.target.value);
   };
+
+  const filteredCountries = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(filterText.toLowerCase())
+  );
 
   return (
     <>
       <div className="title">Weather details of the countries</div>
-      <div className="filter" onChange={handleFilter}>
-        <input type="text" />
+      <div className="filter">
+        <input
+          type="text"
+          value={filterText}
+          onChange={handleFilter}
+          placeholder="Filter by country name"
+        />
       </div>
       <div className="container">
-        {countries
-          .filter((country) => {
-            if (country.region == region || region == "") return true;
-            return false;
-          })
-          .map((country, index) => (
-            <div
-              className="listView"
-              key={index}
-              onClick={() => {
-                openModal(country);
-              }}
-            >
-              <img src={country.flags.png} alt={country.name.common}></img>
-              <div className="countryName">{country.name.common}</div>
-            </div>
-          ))}
+        {filteredCountries.map((country, index) => (
+          <div
+            className="listView"
+            key={index}
+            onClick={() => openModal(country)}
+          >
+            <img src={country.flags.png} alt={country.name.common} />
+            <div className="countryName">{country.name.common}</div>
+          </div>
+        ))}
       </div>
       <Modals
         isOpen={modalOpen}
